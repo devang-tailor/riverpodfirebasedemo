@@ -4,7 +4,6 @@ import 'package:riverpodfirebasedemo/commons/constants.dart';
 import 'package:riverpodfirebasedemo/models/user_model.dart';
 import 'package:riverpodfirebasedemo/viewmodels/form_viewmodel.dart';
 
-
 class UserFormView extends ConsumerStatefulWidget {
   @override
   _UserFormViewState createState() => _UserFormViewState();
@@ -75,25 +74,31 @@ class _UserFormViewState extends ConsumerState<UserFormView> {
                   },
                 ),
               ),
-              ListTile(
-                title: Text('Languages'),
-                trailing: Column(
+              Expanded(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: languages.map((language) {
-                    return CheckboxListTile(
-                      value: _selectedLanguages.contains(language),
-                      title: Text(language),
-                      onChanged: (bool? value) {
-                        setState(() {
-                          if (value == true) {
-                            _selectedLanguages.add(language);
-                          } else {
-                            _selectedLanguages.remove(language);
-                          }
-                        });
-                      },
-                    );
-                  }).toList(),
+                  children: [
+                    Text('Languages'),
+                    Expanded(
+                      child: ListView(
+                        children: languages.map((language) {
+                          return CheckboxListTile(
+                            value: _selectedLanguages.contains(language),
+                            title: Text(language),
+                            onChanged: (bool? value) {
+                              setState(() {
+                                if (value == true) {
+                                  _selectedLanguages.add(language);
+                                } else {
+                                  _selectedLanguages.remove(language);
+                                }
+                              });
+                            },
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               ElevatedButton(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpodfirebasedemo/viewmodels/auth_viewmodel.dart';
 import 'package:riverpodfirebasedemo/viewmodels/form_viewmodel.dart';
 import 'package:riverpodfirebasedemo/views/user_form_view.dart';
 class HomeView extends ConsumerWidget {
@@ -8,7 +9,9 @@ class HomeView extends ConsumerWidget {
     final users = ref.watch(formViewModelProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text('Home')),
+      appBar: AppBar(title: Text('Home'),actions: [
+        ElevatedButton.icon(onPressed: () => ref.read(authViewModelProvider.notifier).signOut(), label: const Icon(Icons.logout))
+      ],),
       body: ListView.builder(
         itemCount: users.length,
         itemBuilder: (context, index) {

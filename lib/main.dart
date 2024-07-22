@@ -12,7 +12,7 @@ void main() async {
   } catch (e) {
     print("Error initializing Firebase: $e");
   }
-  debugPaintSizeEnabled = true;
+//  debugPaintSizeEnabled = true;
   runApp(ProviderScope(child: MyApp()));
 }
 
